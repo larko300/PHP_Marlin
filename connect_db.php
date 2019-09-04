@@ -15,7 +15,7 @@ try {
     VALUES ('$username_comment', '$comment')";
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo "New record created successfully";
+    echo "";
     }
 catch(PDOException $e)
     {
@@ -23,5 +23,5 @@ catch(PDOException $e)
     }
 
 $conn = null;
-
+ header("location: http://localhost/Marlin_Materialy/");
 ?>
