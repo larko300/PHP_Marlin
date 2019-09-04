@@ -85,18 +85,19 @@
                             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
                             <div class="card-body">
-                                <form action="/store" method="post">
+                                <form action="/Marlin_Materialy/connect_db.php" method="post">
                                     <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Имя</label>
-                                    <input name="name" class="form-control" id="exampleFormControlTextarea1" />
+                                    <input name="username" class="form-control" id="exampleFormControlTextarea1" />
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Сообщение</label>
-                                    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                   </div>
                                   <button type="submit" class="btn btn-success">Отправить</button>
                                 </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
