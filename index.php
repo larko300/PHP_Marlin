@@ -15,10 +15,16 @@
 </head>
 <body>
   <?php
-  $users_comments = [
-    ['userimg' => 'img/no-user.jpg', 'username' => 'John Doe', 'datecomm' => '21/08/19', 'comm' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati.'],
-    ['userimg' => 'img/no-user.jpg', 'username' => 'Mike Doe', 'datecomm' => '21/07/19', 'comm' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe aspernatur, ullam doloremque deleniti, sequi obcaecati.']
-  ];
+
+  $servername = "localhost";
+  $username   = "larko3000";
+  $password   = "07081997A";
+  $dbname     = "blog";
+
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+  $sql = 'SELECT * FROM comment_form ORDER BY id ASC';
+  $statement = $conn->query($sql);
+  $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
    ?>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -65,12 +71,12 @@
                               <?php foreach ($users_comments as $user_comment): ?>
 
                                 <div class="media">
-                                  <img src="<?php echo $user_comment['userimg']; ?>" class="mr-3" alt="..." width="64" height="64">
+                                  <img src="img/no-user.jpg" class="mr-3" alt="..." width="64" height="64">
                                   <div class="media-body">
                                     <h5 class="mt-0"><?php echo $user_comment['username']; ?></h5>
-                                    <span><small><?php echo $user_comment['datecomm']; ?></small></span>
+                                    <span><small><?php echo $user_comment['registrer_date']; ?></small></span>
                                     <p>
-                                      <?php echo $user_comment['comm']; ?>
+                                      <?php echo $user_comment['comment']; ?>
                                     </p>
                                   </div>
                                 </div>
@@ -85,7 +91,7 @@
                             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
                             <div class="card-body">
-                                <form action="/Marlin_Materialy/connect_db.php" method="post">
+                                <form action="/Marlin_Materialy/isert_comment_db.php" method="post">
                                     <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Имя</label>
                                     <input name="username" class="form-control" id="exampleFormControlTextarea1" />
