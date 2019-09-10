@@ -25,6 +25,8 @@
   $sql = 'SELECT * FROM comment_form ORDER BY id ASC';
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
    ?>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -65,7 +67,14 @@
 
                             <div class="card-body">
                               <div class="alert alert-success" role="alert">
-                                Комментарий успешно добавлен
+                                <?php
+                                session_start();
+                                if (isset($_SESSION['flash'])) {
+                                    echo $_SESSION['flash'];
+                                    unset($_SESSION['flash']);
+                                }
+
+                                ?>
                               </div>
 
                               <?php foreach ($users_comments as $user_comment): ?>
