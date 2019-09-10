@@ -22,7 +22,7 @@
   $dbname     = "blog";
 
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  $sql = 'SELECT * FROM comment_form ORDER BY id ASC';
+  $sql = 'SELECT * FROM comment_form ORDER BY id DESC';
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
 
