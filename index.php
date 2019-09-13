@@ -69,9 +69,9 @@
                               <div class="alert alert-success" role="alert">
                                 <?php
                                 session_start();
-                                if (isset($_SESSION['flash'])) {
-                                    echo $_SESSION['flash'];
-                                    unset($_SESSION['flash']);
+                                if (isset($_SESSION['flash_comment_succ'])) {
+                                    echo $_SESSION['flash_comment_succ'];
+                                    unset($_SESSION['flash_comment_succ']);
                                 }
 
                                 ?>
@@ -104,15 +104,30 @@
                                     <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Имя</label>
                                     <input name="username" class="form-control" id="exampleFormControlTextarea1" />
+                                    <h5>
+                                    <?php
+                                    if (isset($_SESSION['flash_name_comment'])) {
+                                        echo $_SESSION['flash_name_comment'];
+                                        unset($_SESSION['flash_name_comment']);
+                                    }
+                                    ?>
+                                    </h5>
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Сообщение</label>
                                     <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <h5>
+                                    <?php
+                                    if (isset($_SESSION['flash_comment'])) {
+                                        echo $_SESSION['flash_comment'];
+                                        unset($_SESSION['flash_comment']);
+                                    }
+                                    ?>
+                                    </h5>
                                   </div>
                                   <button type="submit" class="btn btn-success">Отправить</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
