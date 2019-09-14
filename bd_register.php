@@ -6,7 +6,7 @@ $dbname = "blog";
 
 $username_register = $_POST['name'];
 $user_email = $_POST['email'];
-$user_password = $_POST['password'];
+$user_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 if (!empty($username_register)&&!empty($user_email)&&!empty($user_password)) {
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
