@@ -37,7 +37,7 @@
                                 <a class="nav-link" href="login.html">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="register.html">Register</a>
+                                <a class="nav-link" href="register.php">Register</a>
                             </li>
                     </ul>
                 </div>
@@ -104,6 +104,12 @@
                                             if (isset($_SESSION['flash_register_password'])) {
                                                 echo $_SESSION['flash_register_password'];
                                             }
+                                            if (isset($_SESSION['flash_register_password_min'])) {
+                                                echo $_SESSION['flash_register_password_min'];
+                                            }
+                                            if (isset($_SESSION['flash_register_password_verify'])) {
+                                                echo $_SESSION['flash_register_password_verify'];
+                                            }
                                             ?>
                                         </div>
                                     </div>
@@ -117,6 +123,14 @@
                                             if (isset($_SESSION['flash_register_password'])) {
                                                 echo $_SESSION['flash_register_password'];
                                                 unset($_SESSION['flash_register_password']);
+                                            }
+                                            if (isset($_SESSION['flash_register_password_min'])) {
+                                                echo $_SESSION['flash_register_password_min'];
+                                                unset($_SESSION['flash_register_password_min']);
+                                            }
+                                            if (isset($_SESSION['flash_register_password_verify'])) {
+                                                echo $_SESSION['flash_register_password_verify'];
+                                                unset($_SESSION['flash_register_password_verify']);
                                             }
                                             ?>
                                         </div>
