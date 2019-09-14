@@ -63,7 +63,7 @@
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong></strong>
                                                 </span>
-                                                <h5>
+                                                <h5 style="color:red">
                                                   <?php
                                                   session_start();
                                                   if (isset($_SESSION['flash_register_name'])) {
@@ -80,7 +80,7 @@
 
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control" name="email" >
-                                            <h5>
+                                            <h5 style="color:red">
                                               <?php
                                               if (isset($_SESSION['flash_register_email'])) {
                                                   echo $_SESSION['flash_register_email'];
@@ -89,6 +89,10 @@
                                               if (isset($_SESSION['flash_register_email_form'])) {
                                                   echo $_SESSION['flash_register_email_form'];
                                                   unset($_SESSION['flash_register_email_form']);
+                                              }
+                                              if (isset($_SESSION['flash_register_email_recurrent'])) {
+                                                  echo $_SESSION['flash_register_email_recurrent'];
+                                                  unset($_SESSION['flash_register_email_recurrent']);
                                               }
                                               ?>
                                             </h5>
@@ -100,6 +104,7 @@
 
                                         <div class="col-md-6">
                                             <input  type="password" class="form-control " name="password"  autocomplete="new-password">
+                                            <h5 style="color:red">
                                             <?php
                                             if (isset($_SESSION['flash_register_password'])) {
                                                 echo $_SESSION['flash_register_password'];
@@ -111,6 +116,7 @@
                                                 echo $_SESSION['flash_register_password_verify'];
                                             }
                                             ?>
+                                            </h5>
                                         </div>
                                     </div>
 
@@ -119,6 +125,7 @@
 
                                         <div class="col-md-6">
                                             <input <  type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                            <h5 style="color:red">
                                             <?php
                                             if (isset($_SESSION['flash_register_password'])) {
                                                 echo $_SESSION['flash_register_password'];
@@ -133,6 +140,7 @@
                                                 unset($_SESSION['flash_register_password_verify']);
                                             }
                                             ?>
+                                            </h5>
                                         </div>
                                     </div>
 
