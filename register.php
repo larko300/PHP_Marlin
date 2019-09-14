@@ -61,8 +61,17 @@
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" autofocus>
 
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>Ошибка валидации</strong>
+                                                    <strong></strong>
                                                 </span>
+                                                <h5>
+                                                  <?php
+                                                  session_start();
+                                                  if (isset($_SESSION['flash_register_name'])) {
+                                                      echo $_SESSION['flash_register_name'];
+                                                      unset($_SESSION['flash_register_name']);
+                                                  }
+                                                  ?>
+                                                </h5>
                                         </div>
                                     </div>
 
@@ -71,6 +80,18 @@
 
                                         <div class="col-md-6">
                                             <input id="email" type="email" class="form-control" name="email" >
+                                            <h5>
+                                              <?php
+                                              if (isset($_SESSION['flash_register_email'])) {
+                                                  echo $_SESSION['flash_register_email'];
+                                                  unset($_SESSION['flash_register_email']);
+                                              }
+                                              if (isset($_SESSION['flash_register_email_form'])) {
+                                                  echo $_SESSION['flash_register_email_form'];
+                                                  unset($_SESSION['flash_register_email_form']);
+                                              }
+                                              ?>
+                                            </h5>
                                         </div>
                                     </div>
 
@@ -78,7 +99,12 @@
                                         <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                                         <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control " name="password"  autocomplete="new-password">
+                                            <input  type="password" class="form-control " name="password"  autocomplete="new-password">
+                                            <?php
+                                            if (isset($_SESSION['flash_register_password'])) {
+                                                echo $_SESSION['flash_register_password'];
+                                            }
+                                            ?>
                                         </div>
                                     </div>
 
@@ -86,7 +112,13 @@
                                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                                         <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                            <input <  type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                            <?php
+                                            if (isset($_SESSION['flash_register_password'])) {
+                                                echo $_SESSION['flash_register_password'];
+                                                unset($_SESSION['flash_register_password']);
+                                            }
+                                            ?>
                                         </div>
                                     </div>
 
