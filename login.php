@@ -66,6 +66,14 @@
                                                   echo $_SESSION['flash_verify_email'];
                                                   unset($_SESSION['flash_verify_email']);
                                               }
+                                              if (isset($_SESSION['flash_login_email_form'])) {
+                                                  echo $_SESSION['flash_login_email_form'];
+                                                  unset($_SESSION['flash_login_email_form']);
+                                              }
+                                              if (isset($_SESSION['flash_verify_email_empty'])) {
+                                                  echo $_SESSION['flash_verify_email_empty'];
+                                                  unset($_SESSION['flash_verify_email_empty']);
+                                              }
                                               ?>
                                             </h5>
                                         </div>
@@ -81,6 +89,10 @@
                                               if (isset($_SESSION['flash_verify_password'])) {
                                                   echo $_SESSION['flash_verify_password'];
                                                   unset($_SESSION['flash_verify_password']);
+                                              }
+                                              if (isset($_SESSION['flash_verify_password_empty'])) {
+                                                  echo $_SESSION['flash_verify_password_empty'];
+                                                  unset($_SESSION['flash_verify_password_empty']);
                                               }
                                               ?>
                                             </h5>
