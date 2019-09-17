@@ -25,7 +25,7 @@
   $sql = 'SELECT * FROM comment_form ORDER BY id DESC';
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-  session_start();
+
 
    ?>
     <div id="app">
@@ -48,11 +48,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><?php
-                                if (isset($_SESSION['name_varify'])) {
-                                    echo $_SESSION['name_varify'];
-                                }
-                                 ?></a>
+                                <a class="nav-link" href="login.php">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="register.php">Register</a>
                             </li>
                     </ul>
                 </div>
@@ -69,6 +68,7 @@
                             <div class="card-body">
                               <div class="alert alert-success" role="alert">
                                 <?php
+                                session_start();
                                 if (isset($_SESSION['flash_comment_succ'])) {
                                     echo $_SESSION['flash_comment_succ'];
                                     unset($_SESSION['flash_comment_succ']);
@@ -100,7 +100,19 @@
                             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
                             <div class="card-body">
-                                <form action="/Marlin_Materialy/db_logined.php" method="post">
+                                <form action="/Marlin_Materialy/isert_comment_db.php" method="post">
+                                    <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Имя</label>
+                                    <input name="username" class="form-control" id="exampleFormControlTextarea1" />
+                                    <h5>
+                                    <?php
+                                    if (isset($_SESSION['flash_name_comment'])) {
+                                        echo $_SESSION['flash_name_comment'];
+                                        unset($_SESSION['flash_name_comment']);
+                                    }
+                                    ?>
+                                    </h5>
+                                  </div>
                                   <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Сообщение</label>
                                     <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
