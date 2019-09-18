@@ -54,6 +54,9 @@
                                 }
                                  ?></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="\Marlin_Materialy\log_out.php">logout</a>
+                            </li>
                     </ul>
                 </div>
             </div>
