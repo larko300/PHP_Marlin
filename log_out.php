@@ -7,9 +7,6 @@ if (isset($_COOKIE["email"])) {
 if (isset($_COOKIE["password"])) {
   setcookie("password", "");
 }
-if (isset($_COOKIE["email"])) {
-  setcookie("email", "");
-}
 if (isset($_SESSION['email_varify'])) {
   unset($_SESSION['email_varify']);
 }
