@@ -22,10 +22,10 @@
   $dbname     = "blog";
 
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  $sql = 'SELECT * FROM comment_form ORDER BY id DESC';
+  $sql = 'SELECT * FROM comment_form INNER JOIN register ON id=user_id';
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+  session_start();
 
    ?>
     <div id="app">
@@ -47,12 +47,25 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <?php if(isset($_SESSION['name_varify'])){ ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><?php
+                                if (isset($_SESSION['name_varify'])) {
+                                    echo $_SESSION['name_varify'];
+                                }
+                                 ?></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="\Marlin_Materialy\log_out.php">logout</a>
+                            </li>
+                        <?php }else{ ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php">Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="register.php">Register</a>
                             </li>
+                      <?php  } ?>
                     </ul>
                 </div>
             </div>
@@ -68,7 +81,6 @@
                             <div class="card-body">
                               <div class="alert alert-success" role="alert">
                                 <?php
-                                session_start();
                                 if (isset($_SESSION['flash_comment_succ'])) {
                                     echo $_SESSION['flash_comment_succ'];
                                     unset($_SESSION['flash_comment_succ']);
@@ -100,19 +112,8 @@
                             <div class="card-header"><h3>Оставить комментарий</h3></div>
 
                             <div class="card-body">
-                                <form action="/Marlin_Materialy/isert_comment_db.php" method="post">
-                                    <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Имя</label>
-                                    <input name="username" class="form-control" id="exampleFormControlTextarea1" />
-                                    <h5>
-                                    <?php
-                                    if (isset($_SESSION['flash_name_comment'])) {
-                                        echo $_SESSION['flash_name_comment'];
-                                        unset($_SESSION['flash_name_comment']);
-                                    }
-                                    ?>
-                                    </h5>
-                                  </div>
+                              <?php if (isset($_SESSION['name_varify'])) :?>
+                                <form action="/Marlin_Materialy/db_index.php" method="post">
                                   <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Сообщение</label>
                                     <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -127,6 +128,9 @@
                                   </div>
                                   <button type="submit" class="btn btn-success">Отправить</button>
                                 </form>
+                            <?php else: ?>
+                             <h4>Что бы оставить комментарий <a href="http://localhost/Marlin_Materialy/login.php">войдите</a> или <a href="http://localhost/Marlin_Materialy/register.php">зарегистрируйтесь</a></h4>
+                           <?php endif; ?>
                             </div>
                         </div>
                     </div>
