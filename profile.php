@@ -76,7 +76,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <img src="<?php if(isset($_SESSION['user_image'])){echo $_SESSION['user_image'];}else {echo 'img/no-user.jpg';}?>"string";" alt="" class="img-fluid">
+                                        <img src="<?php if(isset($_SESSION['user_image'])){echo 'img/'.$_SESSION['user_image'];}else {echo 'img/no-user.jpg';}?>"string";" alt="" class="img-fluid">
                                     </div>
 
                                     <div class="col-md-12">
@@ -94,25 +94,31 @@
 
                         <div class="card-body">
                             <div class="alert alert-success" role="alert">
-                                Пароль успешно обновлен
+                                <?php if(isset($_SESSION['succ_update_pass'])) echo $_SESSION['succ_update_pass']; unset($_SESSION['succ_update_pass']);?>
                             </div>
 
-                            <form action="/profile/password" method="post">
+                            <form action="db_profile_password.php" method="post">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Current password</label>
                                             <input type="password" name="current" class="form-control" id="exampleFormControlInput1">
+                                            <h4 style="color:red"><?php if(isset($_SESSION['empty_flash'])) echo $_SESSION['empty_flash']; unset($_SESSION['empty_flash']);?></h4>
+                                            <h4 style="color:red"><?php if(isset($_SESSION['password_verify_prof_flash'])) echo $_SESSION['password_verify_prof_flash']; unset($_SESSION['password_verify_prof_flash']);?></h4>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">New password</label>
                                             <input type="password" name="password" class="form-control" id="exampleFormControlInput1">
+                                            <h4 style="color:red"><?php if(isset($_SESSION['empty_flash'])) echo $_SESSION['empty_flash']; unset($_SESSION['empty_flash']);?></h4>
+                                            <h4 style="color:red"><?php if(isset($_SESSION['confirmation_prof_flash'])) echo $_SESSION['confirmation_prof_flash']; unset($_SESSION['confirmation_prof_flash']);?></h4>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="exampleFormControlInput1">Password confirmation</label>
                                             <input type="password" name="password_confirmation" class="form-control" id="exampleFormControlInput1">
+                                            <h4 style="color:red"><?php if(isset($_SESSION['empty_flash'])) echo $_SESSION['empty_flash']; unset($_SESSION['empty_flash']);?></h4>
+                                            <h4 style="color:red"><?php if(isset($_SESSION['confirmation_prof_flash'])) echo $_SESSION['confirmation_prof_flash']; unset($_SESSION['confirmation_prof_flash']);?></h4>
                                         </div>
 
                                         <button class="btn btn-success">Submit</button>
