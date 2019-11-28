@@ -17,12 +17,12 @@
   <?php
 
   $servername = "localhost";
-  $username   = "larko3000";
-  $password   = "07081997A";
+  $username   = "root";
+  $password   = "";
   $dbname     = "blog";
 
   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-  $sql = 'SELECT * FROM comment_form INNER JOIN register ON id=user_id';
+  $sql = "SELECT * FROM comment_form WHERE comment_status = '0'";
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
   session_start();
@@ -49,14 +49,17 @@
                         <!-- Authentication Links -->
                         <?php if(isset($_SESSION['name_varify'])){ ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><?php
+                                <a class="nav-link" href="profile.php"><?php
                                 if (isset($_SESSION['name_varify'])) {
                                     echo $_SESSION['name_varify'];
                                 }
                                  ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="\Marlin_Materialy\log_out.php">logout</a>
+                                <a class="nav-link" href="admin.php">Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="log_out.php">Logout</a>
                             </li>
                         <?php }else{ ?>
                             <li class="nav-item">
@@ -95,7 +98,7 @@
                                   <img src="img/no-user.jpg" class="mr-3" alt="..." width="64" height="64">
                                   <div class="media-body">
                                     <h5 class="mt-0"><?php echo $user_comment['username']; ?></h5>
-                                    <span><small><?php echo $user_comment['registrer_date']; ?></small></span>
+                                    <span><small><?php echo $user_comment['date_comment']; ?></small></span>
                                     <p>
                                       <?php echo $user_comment['comment']; ?>
                                     </p>
@@ -129,7 +132,7 @@
                                   <button type="submit" class="btn btn-success">Отправить</button>
                                 </form>
                             <?php else: ?>
-                             <h4>Что бы оставить комментарий <a href="http://localhost/Marlin_Materialy/login.php">войдите</a> или <a href="http://localhost/Marlin_Materialy/register.php">зарегистрируйтесь</a></h4>
+                             <h4>Что бы оставить комментарий <a href="login.php">войдите</a> или <a href="register.php">зарегистрируйтесь</a></h4>
                            <?php endif; ?>
                             </div>
                         </div>
