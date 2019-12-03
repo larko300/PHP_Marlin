@@ -4,7 +4,7 @@ $username = "root";
 $password = "";
 $dbname = "blog";
 
-$comment_id = $_GET['button_ban'];
+$comment_id = $_GET['id'];
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "UPDATE comment_form SET comment_status = '1' WHERE id_comment = '$comment_id'";

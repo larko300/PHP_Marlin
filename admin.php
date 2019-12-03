@@ -27,7 +27,6 @@
   $statement = $conn->query($sql);
   $users_comments = $statement->fetchAll(PDO::FETCH_ASSOC);
   session_start();
-
    ?>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -98,18 +97,15 @@
                                                 <img src="img/no-user.jpg" alt="" class="img-fluid" width="64" height="64">
                                             </td>
                                             <td><?php echo $user_comment['username']; ?></td>
+                                            <td><?php echo $user_comment['id_comment']; ?></td>
                                             <td><?php echo $user_comment['date_comment']; ?></td>
                                             <td><?php echo $user_comment['comment']; ?></td>
                                             <td>
-                                              <form>
-                                                <button type="submit" name="button_allow" formaction="/Marlin_Materialy/db_admin_allow.php" formmethod="get" class="btn btn-success" value="<?php if (isset($user_comment['id_comment']))  echo $user_comment['id_comment']; ?>">Разрешить</button>
-                                              </form>
-                                              <form>
-                                                <button type="submit" name="button_ban" formaction="/Marlin_Materialy/db_admin_ban.php" formmethod="get" class="btn btn-warning" value="<?php if (isset($user_comment['id_comment']))  echo $user_comment['id_comment']; ?>">Запретить</button>
-                                              </form>
-                                              <form>
-                                                <button type="submit" onclick="return confirm('are you sure?')" formaction="/Marlin_Materialy/db_admin_delete.php" formmethod="get" name="button_delete" class="btn btn-danger" value="<?php if (isset($user_comment['id_comment']))  echo $user_comment['id_comment']; ?>">Удалить</button>
-                                              </form>
+                                              <a href="/Marlin_Materialy/db_admin_allow.php?id=<?php echo $user_comment['id_comment'] ?>" class="btn btn-success">Разрешить</a>
+
+                                              <a href="/Marlin_Materialy/db_admin_ban.php?id=<?php echo $user_comment['id_comment'] ?>" class="btn btn-warning">Запретить</a>
+
+                                              <a href="/Marlin_Materialy/db_admin_delete.php?id=<?php echo $user_comment['id_comment'] ?>" class="btn btn-danger">Удалить</a>
                                             </td>
 
                                         </tr>
