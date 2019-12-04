@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "larko3000";
-$password = "07081997A";
+$username = "root";
+$password = "";
 $dbname = "blog";
 
 $user_email = $_POST['email'];
@@ -9,7 +9,7 @@ $user_password = $_POST['password'];
 $checkbox = $_POST['remember'];
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$sql = "SELECT * FROM register WHERE email = '$user_email'";
+$sql = "SELECT * FROM users WHERE email = '$user_email'";
 $statement = $conn->query($sql);
 $db_user_data = $statement->fetch(PDO::FETCH_ASSOC);
 $user_db_name = $db_user_data['username'];
@@ -23,6 +23,7 @@ session_start();
 if ($password_verify==true&&$user_email==$user_db_email&&!empty($user_password)&&!empty($user_email)&&$email_check==true) {
   $_SESSION['email_varify'] = $user_db_email;
   $_SESSION['name_varify'] = $user_db_name;
+  $_SESSION['user_id'] = $db_user_data['id'];
   if (strlen($checkbox) == 1) {
     setcookie("email", $user_db_email, time() + (10 * 24 * 365));
     setcookie("password", $user_password, time() + (10 * 24 * 365));
@@ -35,7 +36,7 @@ if ($password_verify==true&&$user_email==$user_db_email&&!empty($user_password)&
       setcookie("password", "");
     }
   }
-  header("location:http://localhost/Marlin_Materialy/logined.php");
+  header("location:http://localhost/Marlin_Materialy/index.php");
 }
 elseif ($email_check==false) {
   $_SESSION['flash_login_email_form'] = 'Неправильный формат записи';

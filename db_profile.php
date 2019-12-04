@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "larko3000";
-$password = "07081997A";
+$username = "root";
+$password = "";
 $dbname = "blog";
 
 session_start();
@@ -18,12 +18,12 @@ $recurrent_mail = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!empty($new_name_user)&&!empty($new_user_email)&&$email_check==true&&empty($recurrent_mail)
 &&$new_name_user!==$_SESSION['name_varify']&&$new_user_email!==$_SESSION['email_varify']&&!empty($user_image)) {
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "UPDATE users SET username = '$new_name_user', email = '$new_user_email' WHERE user_id = '$user_id'";
-  $conn->exec($sql);
-  $user_image['name'] = uniqid() . substr($_FILES['image']['name'], -4);
-  $_SESSION['user_image'] = $user_image['name'];
+  $user_image['name'] = uniqid() . substr($user_image['name'], -4);
+  $user_image_name = $user_image['name'];
   move_uploaded_file($_FILES['image']['tmp_name'],'img/'.$user_image['name']);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $sql = "UPDATE users SET username = '$new_name_user', email = '$new_user_email',image = '$user_image_name' WHERE user_id = '$user_id'";
+  $conn->exec($sql);
   $_SESSION['name_varify'] = $new_name_user;
   $_SESSION['email_varify'] = $new_user_email;
   $_SESSION['flash_succ_update'] = 'Профиль успешно обновлен';
